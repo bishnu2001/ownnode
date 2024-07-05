@@ -16,8 +16,8 @@ const ListenerPlugin = {
       console.log("New client connected", socket.id);
 
       // Handle incoming messages from clients
-      socket.on("chat message", (message) => {
-        console.log("Received message:", message);
+      socket.on("chat message", (message,userId,senderId) => {
+        console.log("Received message:", message,userId,senderId);
         // Broadcast the message to all connected clients
         io.emit("chat message", message);
       });
@@ -30,7 +30,6 @@ const ListenerPlugin = {
           senderId,
           receiverId,
         });
-        
       });
 
       // Handle room creation and joining
