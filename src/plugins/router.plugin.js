@@ -3,6 +3,7 @@
 const { readdir } = require("fs");
 const path = require("path");
 const { configs } = require("../config");
+const{errorHandler}=require('../middleware/error.middleware')
 
 const RouterPlugin = {
   setup(app) {
@@ -23,6 +24,7 @@ const RouterPlugin = {
 
       // Set up a 404 handler if no routes are found
       app.use((req, res) => {
+        app.use(errorHandler)
         res.status(404).json("Route not found");
       });
     });
